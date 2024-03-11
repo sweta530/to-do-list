@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do-list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shizuru&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="to-do-container">
+        <h1>To Do List</h1>
+        <div class="to-do-input">
+            <input type="text" name="task_name" id="task_name" oninput="task_enter()">
+            <input type="button" value="Add task" id="task_add_btn" disabled onclick="task_add()">
+        </div>
+        <div class="to-do-btn">
+            <button type="button" onclick="delete_all_task()">Delete All Task</button>
+            <button type="button" onclick="delete_checked_task()">Delete Checked Task</button>
+        </div>
+    </div>
+    <hr >
+    <div class="task-container">
+        <ul id="task-list">
+            <!-- <li id="task_0">
+                <div class="task-content">
+                    <input type="checkbox" name="task" onchange="task_done(this)">
+                    <div class="task-title">Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.</div>
+                </div>
+                <div class="task-btn">
+                    <button type="button" class="edit-btn" onclick="edit_task(this)"> <img src="assets/edit-32.jpg" alt="Edit"> </button>
+                    <button type="button" class="delete-btn" onclick="delete_task(this)"> <img src="assets/delete-32.jpg" alt="Delete"> </button>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+</body>
+</html>

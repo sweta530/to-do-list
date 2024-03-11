@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-image: linear-gradient(rgb(0, 23, 201),rgb(106, 0, 255), rgb(62, 62, 62));
+    background-attachment: fixed;
+    color: white;
+    font-size: medium;
+    height: 100vh;
+}
+.to-do-container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.to-do-container h1 {
+    font-size: 50px;
+    color: white;
+    font-family: 'Shizuru', cursive;
+}
+.to-do-input {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 80%;
+    justify-content: center;
+    margin: 10px;
+}
+.to-do-input input[type=text] {
+    width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+.to-do-input input[type=button] {
+    padding: 10px;
+    background-color: rgb(0, 175, 0);
+    color: aliceblue;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.to-do-input input[type=button]:disabled {
+    background-color: aliceblue;
+    color: black;
+    cursor: auto;
+}
+.to-do-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    height: 40px;
+    width: 80%;
+    justify-content: center;
+    margin: 10px;
+}
+.to-do-btn button {
+    padding: 10px;
+    background-color: rgb(0, 175, 0);
+    color: aliceblue;
+    border-radius: 10px;
+    cursor: pointer;
+}
+hr {
+    width: 80%;
+}
+.task-container {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.task-container ul{
+    list-style-type: none;
+}
+.task-container li{
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+}
+.task-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    width: 90%;
+}
+.task-content input[type="checkbox"]{
+    width: 20px; 
+    height: 20px; 
+    cursor: pointer;
+}
+.task-title.checked {
+    text-decoration-line: line-through;
+}
+.task-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
+    width: 10%;
+}
+.task-btn button {
+    background-color: aliceblue;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+.task-btn button img {
+    height: 100%;
+    width: 100%;
+}
+#task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
