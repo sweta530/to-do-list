@@ -1,4 +1,3 @@
-var task_id = 0;
 
 function task_enter() {
     let task_title_input = document.getElementById("task_name").value;
@@ -24,7 +23,7 @@ function loadTasks() {
         <li id="task_${task.id}">
             <div class="task-content">
                 <input type="checkbox" name="task" onchange="task_done(this)" ${checkedClass}>
-                <div class="task-title ${checkedClass}">${task.id} ${task.title}</div>
+                <div class="task-title ${checkedClass}"> ${task.title}</div>
             </div>
             <div class="task-btn">
                 <button type="button" class="edit-btn" onclick="edit_task(this)"> <img src="assets/edit-32.jpg" alt="Edit"> </button>
@@ -39,12 +38,12 @@ function task_add() {
     let task_title_input = document.getElementById("task_name").value;
     document.getElementById("task_name").value = "";
     document.getElementById("task_add_btn").disabled = true;
+    var task_id = date.now()
     let task = {
         id: task_id,
         title: task_title_input,
         done: false 
     };
-    task_id+=1;
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
