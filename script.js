@@ -38,7 +38,7 @@ function task_add() {
     let task_title_input = document.getElementById("task_name").value;
     document.getElementById("task_name").value = "";
     document.getElementById("task_add_btn").disabled = true;
-    var task_id = date.now()
+    let task_id = Date.now();
     let task = {
         id: task_id,
         title: task_title_input,
