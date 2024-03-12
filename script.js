@@ -1,15 +1,25 @@
 
 function task_enter() {
-    let task_title_input = document.getElementById("task_name").value;
-    if (task_title_input != "") {
-        document.getElementById("task_add_btn").disabled = false;
+    let task_title_input = document.getElementById("task_name");
+    let task_title = task_title_input.value;
+    let task_add_btn = document.getElementById("task_add_btn");
+    if (task_title != "") {
+        task_add_btn.disabled = false;       
     } else {
-        document.getElementById("task_add_btn").disabled = true;
+        task_add_btn.disabled = true;
     }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     loadTasks();
+    let task_title_input = document.getElementById("task_name");
+    let task_add_btn = document.getElementById("task_add_btn");
+
+    task_title_input.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" && task_title_input.value != '') {
+            task_add_btn.click();
+        }
+    });
 });
 
 function loadTasks() {
@@ -51,16 +61,38 @@ function task_add() {
 
 function edit_task(taskButton) {
     let li = taskButton.closest("li");
-    let task_title = li.querySelector(".task-title").innerText;
-    let task_input = document.getElementById("task_name");
-    task_input.value = task_title;
-    task_input.focus();
-    document.getElementById("task_add_btn").disabled = false;
-    
-    remove_task_from_local(li);
+    let task_title = li.querySelector(".task-title");
 
-    li.parentNode.removeChild(li);
+    task_title.contentEditable = true;
+    task_title.classList.add("editable");
+    task_title.focus();
+    
+    task_title.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            save_edited_task(task_title,li);
+        }
+    });
+
+    task_title.addEventListener('blur', function(e) {
+        save_edited_task(task_title,li);
+    });
 }
+
+function save_edited_task(task_title,li) {
+    task_title.contentEditable = false;
+    task_title.classList.remove("editable");
+
+    let taskId = li.id.split("_")[1];
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(task => {
+        if (task.id === parseInt(taskId)) {
+            task.title = task_title.innerText;
+        }
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
 
 function delete_task(taskButton) {
     if (confirmation_delete("Are you sure you want to delete the task?")) {

@@ -104,6 +104,10 @@ hr {
 .task-title.checked {
     text-decoration-line: line-through;
 }
+.task-title.editable {
+    background-color: rgb(0, 175, 0);
+    color: aliceblue;
+}
 .task-btn {
     display: flex;
     flex-direction: row;
