@@ -33,7 +33,6 @@ function loadTasks() {
     });
 }
 
-
 function task_add() {
     let task_title_input = document.getElementById("task_name").value;
     document.getElementById("task_name").value = "";
@@ -50,7 +49,6 @@ function task_add() {
     loadTasks();
 }
 
-
 function edit_task(taskButton) {
     let li = taskButton.closest("li");
     let task_title = li.querySelector(".task-title").innerText;
@@ -65,10 +63,12 @@ function edit_task(taskButton) {
 }
 
 function delete_task(taskButton) {
-    let li = taskButton.closest("li");
-    remove_task_from_local(li);
+    if (confirmation_delete("Are you sure you want to delete the task?")) {
+        let li = taskButton.closest("li");
+        remove_task_from_local(li);
 
-    li.parentNode.removeChild(li);
+        li.parentNode.removeChild(li);
+    }
 }
 
 function task_done(taskCheckbox) {
@@ -92,18 +92,22 @@ function task_done(taskCheckbox) {
 }
 
 function delete_all_task() {
-    let ul = document.getElementById("task-list");
-    ul.innerHTML = "";
+    if (confirmation_delete("Are you sure you want to delete All task?")) {
+        let ul = document.getElementById("task-list");
+        ul.innerHTML = "";
 
-    localStorage.removeItem('tasks');
+        localStorage.removeItem('tasks');
+    }
 }
 
 function delete_checked_task() {
-    var checkboxes = document.querySelectorAll('input[name=task]:checked');
-    for (var i = 0; i < checkboxes.length; i++) {
-        let li = checkboxes[i].closest("li");
-        li.parentNode.removeChild(li);
-        remove_task_from_local(li);
+    if (confirmation_delete("Are you sure you want to delete Checked task?")) {
+        var checkboxes = document.querySelectorAll('input[name=task]:checked');
+        for (var i = 0; i < checkboxes.length; i++) {
+            let li = checkboxes[i].closest("li");
+            li.parentNode.removeChild(li);
+            remove_task_from_local(li);
+        }
     }
 }
 
@@ -112,4 +116,12 @@ function remove_task_from_local(li) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks = tasks.filter(task => task.id !== parseInt(taskId));
     localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function confirmation_delete(text) {
+    if (confirm(text) == true) {
+      return true
+    } else {
+      return false
+    }
 }
