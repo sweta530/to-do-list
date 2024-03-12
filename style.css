@@ -47,7 +47,7 @@ body {
 .to-do-input input[type=button]:disabled {
     background-color: aliceblue;
     color: black;
-    cursor: auto;
+    cursor: not-allowed;
 }
 .to-do-btn {
     display: flex;
